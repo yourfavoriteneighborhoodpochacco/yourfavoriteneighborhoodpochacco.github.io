@@ -1,19 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Baloo 2', 'Comic Sans MS', 'Segoe UI', cursive, sans-serif;
-  background-color: #c5e0f0;
-  background: #fffaf0;
+  font-family: 'Baloo 2', Arial, sans-serif;
+  background: ##cee4bb;
   color: #333;
   margin: 0;
   padding: 0;
 }
 
 header {
-  font-family: 'Baloo 2', 'Comic Sans MS', 'Segoe UI', cursive, sans-serif;
-  background: #ffdbe0;
+  font-family: 'Baloo 2', Arial, sans-serif;
   text-align: center;
   padding: 1.5rem;
   border-bottom: 3px dashed #ffb6c1;
@@ -46,7 +45,6 @@ section {
 footer {
   text-align: center;
   padding: 1rem;
-  background: #e6f9e6;
   color: #006400;
   font-size: 0.9rem;
 }
