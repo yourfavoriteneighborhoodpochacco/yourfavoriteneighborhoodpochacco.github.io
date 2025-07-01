@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  font-family: 'Baloo 2', Arial, sans-serif;
+  font-family: 'Raleway', sans-serif;
   background: #cee4bb;
   color: #333;
   margin: 0;
@@ -11,7 +11,7 @@ body {
 }
 
 header {
-  font-family: 'Baloo 2', Arial, sans-serif;
+  font-family: 'Raleway', sans-serif;
   text-align: center;
   padding: 1.5rem;
   border-bottom: 3px dashed #ffb6c1;
