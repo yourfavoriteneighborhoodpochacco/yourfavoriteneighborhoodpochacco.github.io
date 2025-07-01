@@ -43,8 +43,15 @@ section {
   padding: 2rem;
 }
 
-#searchBar {
+#searchContainer {
   margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+#searchBar {
   padding: 0.5rem;
   width: 80%;
   max-width: 300px;
@@ -52,6 +59,14 @@ section {
   font-size: 1rem;
   border: 2px solid #d6336c;
   border-radius: 8px;
+}
+
+#voiceSearchBtn {
+  font-size: 1.5rem;
+  background-color: #fff0f5;
+  border: 2px solid #d6336c;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 footer {
