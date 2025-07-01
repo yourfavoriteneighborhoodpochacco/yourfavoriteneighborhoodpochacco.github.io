@@ -43,6 +43,17 @@ section {
   padding: 2rem;
 }
 
+#searchBar {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  width: 80%;
+  max-width: 300px;
+  font-family: 'Patrick Hand SC', cursive;
+  font-size: 1rem;
+  border: 2px solid #d6336c;
+  border-radius: 8px;
+}
+
 footer {
   text-align: center;
   padding: 1rem;
