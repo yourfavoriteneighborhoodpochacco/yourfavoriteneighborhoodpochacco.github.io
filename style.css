@@ -4,10 +4,10 @@ html {
 
 * {
   font-family: 'Patrick Hand SC', cursive;
+  background: #cee4bb;
 }
 
 body {
-  background: #cee4bb;
   color: #333;
   margin: 0;
   padding: 0;
