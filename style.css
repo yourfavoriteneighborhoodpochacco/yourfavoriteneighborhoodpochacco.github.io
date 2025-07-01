@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Lucida Console';
   background: #cee4bb;
   color: #333;
   margin: 0;
@@ -11,7 +11,7 @@ body {
 }
 
 header {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Lucida Console;
   text-align: center;
   padding: 1.5rem;
   border-bottom: 3px dashed #ffb6c1;
