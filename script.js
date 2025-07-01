@@ -1,3 +1,4 @@
+/* Search & voice functionality – WIP
 <script>
   const searchBar = document.getElementById('searchBar');
 const voiceSearchBtn = document.getElementById('voiceSearchBtn');
@@ -44,3 +45,4 @@ function filterSections(query) {
   });
 }
 </script>
+*/
