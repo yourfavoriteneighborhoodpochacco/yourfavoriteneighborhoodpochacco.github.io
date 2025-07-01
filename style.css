@@ -1,1 +1,46 @@
+body {
+  font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
+  background: #fffaf0;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
 
+header {
+  background: #ffdbe0;
+  text-align: center;
+  padding: 1.5rem;
+  border-bottom: 3px dashed #ffb6c1;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin: 0 1rem;
+}
+
+a {
+  color: #d6336c;
+  text-decoration: none;
+}
+
+a:focus, a:hover {
+  outline: 2px solid #d6336c;
+  background-color: #fff0f5;
+}
+
+section {
+  padding: 2rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #e6f9e6;
+  color: #006400;
+  font-size: 0.9rem;
+}
