@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
 html {
   scroll-behavior: smooth;
 }
 
 body {
   font-family: 'Baloo 2', Arial, sans-serif;
-  background: ##cee4bb;
+  background: #cee4bb;
   color: #333;
   margin: 0;
   padding: 0;
