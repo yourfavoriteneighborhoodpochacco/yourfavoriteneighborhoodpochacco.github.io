@@ -4,6 +4,10 @@
 
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
+  if (!SpeechRecognition) {
+    alert("Sorry, your browser does not support Speech Recognition. Try Chrome or Edge.");
+  }
+
   if (SpeechRecognition) {
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
@@ -33,10 +37,14 @@
   });
 
   function filterSections(query) {
-    const sections = document.querySelectorAll('main section');
-    sections.forEach(section => {
-      const text = section.textContent.toLowerCase();
-      section.style.display = text.includes(query) ? 'block' : 'none';
-    });
-  }
+  const sections = document.querySelectorAll('main section');
+
+  sections.forEach(section => {
+    const sectionText = section.textContent.toLowerCase();
+    const sectionId = section.id.toLowerCase();
+    const matches = sectionText.includes(query) || sectionId.includes(query);
+
+    section.style.display = matches ? 'block' : 'none';
+  });
+}
 </script>
