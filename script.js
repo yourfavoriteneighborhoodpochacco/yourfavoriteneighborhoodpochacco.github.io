@@ -1,5 +1,5 @@
-/* Search & voice functionality – WIP
 <script>
+/* Search & voice functionality – WIP
   const searchBar = document.getElementById('searchBar');
 const voiceSearchBtn = document.getElementById('voiceSearchBtn');
 
@@ -44,5 +44,5 @@ function filterSections(query) {
     section.style.display = match ? 'block' : 'none';
   });
 }
-</script>
 */
+</script>
