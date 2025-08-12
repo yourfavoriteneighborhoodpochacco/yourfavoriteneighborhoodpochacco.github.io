@@ -1,53 +1,55 @@
 <!-- • -->
 <!DOCTYPE html>
-<html lang='en' class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width-device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-    Michael Poniente • Computer Engineering Student • Aspiring Software Engineer
+    Michael Poniente • Lead Full-Stack Developer @ GenTalks • Game Developer of BobaBlitz
   </title>
+
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet" />
 
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <script>
     tailwind.config = {
-      darkMode: 'class,
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            'light-cream': '#FFFBF8',
-            'tea-green': '#C5DCA0',
-            'jet-black': '#333333',
-            'ecru-gold': '#CBBF80',
-            'olivine-green': '#9CAF88',
-            'periwinkle': '#96C8FF',
-            'teddy-brown': '#866D57'
+            'cream': '#FFFBF8',
+            'fog': '#484743'
+          },
+          fontFamily: {
+            teachers: ["Teachers", "sans-serif"]
           }
         }
       }
-    } 
+    }
   </script>
 
   <style>
-    body { font-family: 'Patrick Hand SC', sans-serif; }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #F1F5F9; }
-    .dark ::-webkit-scrollbar-track { background: #333333; }
-    ::-webkit-scrollbar-thumb { background: #F1F5F9; border-radius: 10x; }
-    .dark ::-webkit-scrollbar-thumb { background: #333333; }
-    ::-webkit-scrollbar-thumb:hover { background: #9CAF88; }
-    .dark ::-webkit-scrollbar-thumb:hover { background: #658D64; }
+    body { font-family: 'Teachers', sans-serif; }
 
+    /* Scrollbar colors — only cream/fog used */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #FFFBF8; } /* cream */
+    .dark ::-webkit-scrollbar-track { background: #484743; } /* fog */
+    ::-webkit-scrollbar-thumb { background: #FFFBF8; border-radius: 10px; } /* cream */
+    .dark ::-webkit-scrollbar-thumb { background: #484743; } /* fog */
+    ::-webkit-scrollbar-thumb:hover { background: #484743; } /* fog on hover */
+    .dark ::-webkit-scrollbar-thumb:hover { background: #FFFBF8; } /* cream on hover in dark mode */
+
+    /* Glowing name using fog as glow color (rgba) */
     .glowing-name {
       font-weight: bold;
       font-size: 1.25rem;
-      color: #55734A;
+      color: #484743; /* fog */
       animation: subtle-glow 3s infinite alternate;
       transition: all 0.3s ease-in-out;
       cursor: pointer;
@@ -56,310 +58,488 @@
     @keyframes subtle-glow {
       0%, 100% {
         text-shadow:
-          0 0 5px rgba(120, 160, 107, 0.5), 
-          0 0 10px rgba(120, 160, 107, 0.3);
+          0 0 5px rgba(72, 71, 67, 0.5),
+          0 0 10px rgba(72, 71, 67, 0.3);
       }
       50% {
         text-shadow:
-          0 0 10px rgba(120, 160, 107, 0.7),
-          0 0 20px rgba(120, 160, 107, 0.5);
+          0 0 10px rgba(72, 71, 67, 0.7),
+          0 0 20px rgba(72, 71, 67, 0.5);
       }
+    }
 
-      #main-content {
-        transition: opacity 1s ease-in-out;
+    /* Main content fade */
+    #main-content {
+      transition: opacity 1s ease-in-out;
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
       }
-      
-      .animate-fade-in-up {
-              animation: fadeInUp 1s ease-out forwards;
-              opacity: 0;
-          }
-  
-          @keyframes fadeInUp {
-              from {
-                  opacity: 0;
-                  transform: translateY(20px);
-              }
-              to {
-                  opacity: 1;
-                  transform: translateY(0);
-              }
-          }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 
-<body class="bg-light-cream text-jet-black dark:bg-light-cream dark:text-jet-black transition-colors duration-300">
+<body class="bg-cream text-fog transition-colors duration-300">
 
-    <div id="splash-screen" class="fixed inset-0 bg-teddy-brown dark:bg-light-cream flex flex-col items-center justify-center z-[100] transition-opacity duration-1000 ease-in-out overflow-hidden">
-        <h1 class="text-4xl md:text-6xl font-bold text-jet-black dark:text-teddy-brown text-center p-8 animate-fade-in-up" style="animation-delay: 0.5s;">
-            Greetings fellow human.
-        </h1>
-        <p id="geolocation-line" class="text-2xl md:text-4xl text-jet-black dark:text-olivine-green text-center mb-4 animate-fade-in-up" style="animation-delay: 1s; visibility: hidden;">
-            Looks like you are from <span id="geolocation"></span>
+  <div id="splash-screen" class="fixed inset-0 flex flex-col items-center justify-center z-[100] transition-opacity duration-1000 ease-in-out overflow-hidden">
+    <h1 class="text-4xl md:text-6xl font-bold text-fog text-center p-8 animate-fade-in-up" style="animation-delay: 0.5s;">
+      Hi chat!
+    </h1>
+    <p id="geolocation-line" class="text-2xl md:text-4xl text-fog text-center mb-4 animate-fade-in-up" style="animation-delay: 1s; visibility: hidden;">
+      Looks like you are from <span id="geolocation"></span>
+    </p>
+    <h2 class="text-3xl md:text-5xl font-semibold text-fog text-center p-4 animate-fade-in-up" style="animation-delay: 1.5s;">
+      Welcome to my portfolio.
+    </h2>
+  </div>
+
+  <div id="main-content" class="opacity-0">
+    <header class="bg-cream/70 backdrop-blur-lg sticky top-0 z-50 border-b text-fog">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center">
+            <a href="#" class="text-fog font-semibold">Michael Poniente</a>
+          </div>
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#about" class="text-fog hover:text-fog transition">About</a>
+            <a href="#experience" class="text-fog hover:text-fog transition">Experience</a>
+            <a href="#projects" class="text-fog hover:text-fog transition">Projects</a>
+            <a href="#skills" class="text-fog hover:text-fog transition">Skills</a>
+            <a href="#contact" class="text-fog hover:text-fog transition">Contact</a>
+          </div>
+          <div class="flex items-center">
+            <button id="theme-toggle" class="p-2 rounded-md text-fog hover:text-fog focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fog">
+              <svg id="theme-toggle-dark-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+              <svg id="theme-toggle-light-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="about" class="py-16 md:py-20 text-center">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 class="text-4xl md:text-6xl font-bold text-fog">Michael Poniente</h1>
+          <p class="mt-4 text-xl md:text-2xl text-fog">Lead Full-Stack Developer @ GenTalks • Game Developer of BobaBlitz</p>
+          <p class="mt-6 max-w-3xl mx-auto text-fog">
+            I'm a second-year Computer Engineering student with a focus on software development and UX engineering.
+            I'm currently developing a FPS game that blends the chaotic nature of a first-person-shooter and the peaceful nature of a cozy game. What could go wrong? A lot actually.
+          </p>
+
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="https://linkedin.com/in/michael-poniente/" target="_blank" class="text-fog hover:text-fog transition duration-300" aria-label="LinkedIn">
+              <i data-lucide="linkedin" class="w-6 h-6"></i>
+            </a>
+            <a href="https://github.com/yourfavoriteneighborhoodpochacco" target="_blank" class="text-fog hover:text-fog transition duration-300" aria-label="GitHub">
+              <i data-lucide="github" class="w-6 h-6"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-16 text-center">
+          <div class="mt-6 max-w-lg mx-auto rounded-xl shadow-lg overflow-hidden border border-fog">
+            <iframe style="border-radius:12px; display:block;"
+                    src="https://open.spotify.com/embed/playlist/1pMnRrkbEocfaaL15aoW93?utm_source=generator"
+                    width="100%"
+                    height="152"
+                    frameborder="0"
+                    allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="py-16 md:py-24">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-3xl font-bold text-center mb-12">Experience</h2>
+
+          <div class="relative border-l-2 border-fog">
+            <!-- Item -->
+            <div class="mb-12 md:mb-16 pl-8 relative before:absolute before:left-[-9px] before:top-1 before:w-4 before:h-4 before:bg-fog before:rounded-full before:border-4 before:border-cream dark:before:border-cream">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-xl font-semibold">Lead Full-Stack Developer</h3>
+                  <p class="dark:text-cream">GenTalks</p>
+                </div>
+                <p class="text-sm text-fog text-right">Jul 2025 - Present</p>
+              </div>
+              <ul class="mt-2 list-disc list-inside dark:text-cream space-y-1">
+                <li>Led the architecture and development of GenTalks' website and designed UI/UX layouts that align with the organization's mission, target audience, and branding</li>
+                <li>Self-taught and implemented Node.js, Express, and PostgreSQL in order to build backend functionality and manage data</li>
+                <li>Integrated Sanity CMS as a strategic product decision to enable non-developers to dynamically manage content</li>
+              </ul>
+            </div>
+
+            <!-- Item -->
+            <div class="mb-12 md:mb-16 pl-8 relative before:absolute before:left-[-9px] before:top-1 before:w-4 before:h-4 before:bg-fog before:rounded-full before:border-4 before:border-cream dark:before:border-cream">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-xl font-semibold">Center Assistant, Math & Reading Tutor</h3>
+                  <p class="dark:text-cream">Kumon North America Inc.</p>
+                </div>
+                <p class="text-sm text-fog text-right">May 2023 - Present</p>
+              </div>
+              <ul class="mt-2 list-disc list-inside dark:text-cream space-y-1">
+                <li>Tutored K-12 students emphasizing concept mastery in applied mathematics and reading comprehension</li>
+                <li>Supported center operations by managing student flow, grading, and personalized instruction</li>
+              </ul>
+            </div>
+
+            <!-- Item -->
+            <div class="mb-12 md:mb-16 pl-8 relative before:absolute before:left-[-9px] before:top-1 before:w-4 before:h-4 before:bg-fog before:rounded-full before:border-4 before:border-cream dark:before:border-cream">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-xl font-semibold">Cyber Security Lead</h3>
+                  <p class="dark:text-cream">IX Gaming</p>
+                </div>
+                <p class="text-sm text-fog text-right">Dec 2022 - Present</p>
+              </div>
+              <ul class="mt-2 list-disc list-inside dark:text-cream space-y-1">
+                <li>Designed and implemented a custom manual moderation system that helped prevent over 20,000 cyberattacks across the Discord-based esports community</li>
+                <li>Co-developed and maintained a 24/7 automated Discord bot that enforced server safety protocols in real time, dramatically improving threat response time and reliability</li>
+                <li>Researched parallels between spinal cord stimulation and gustatory system modulation for potential clinical applications</li>
+                <li>Collaborated remotely with mentors and peers to refine research methodologies</li>
+              </ul>
+            </div>
+
+            <!-- Item -->
+            <div class="mb-12 md:mb-16 pl-8 relative before:absolute before:left-[-9px] before:top-1 before:w-4 before:h-4 before:bg-fog before:rounded-full before:border-4 before:border-cream dark:before:border-cream">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-xl font-semibold">Community Operations Lead</h3>
+                  <p class="dark:text-cream">IX Gaming</p>
+                </div>
+                <p class="text-sm text-fog text-right">Sep 2022 - Present</p>
+              </div>
+              <ul class="mt-2 list-disc list-inside dark:text-cream space-y-1">
+                <li>Acted as a senior Discord moderator and community leader for a global esports organization prioritizing inclusion and accessibility</li>
+                <li>Helped manage a Discord community that reached 12,000+ active users, implementing policies that fostered safe and respectful engagement</li>
+                <li>Led moderator training and improved conflict resolution to maintain a supportive space for marginalized and young adult gamers</li>
+                <li>Spearheaded the launch of iLive! Mental Health Initiative, a community-wide program promoting digital wellness and safe online behavior in competitive esports</li>
+              </ul>
+            </div>
+
+            <!-- Item -->
+            <div class="mb-12 md:mb-16 pl-8 relative before:absolute before:left-[-9px] before:top-1 before:w-4 before:h-4 before:bg-fog before:rounded-full before:border-4 before:border-cream dark:before:border-cream">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-xl font-semibold">Event Coordinator</h3>
+                  <p class="dark:text-cream">IX Gaming</p>
+                </div>
+                <p class="text-sm text-fog text-right">Feb 2021 - Present</p>
+              </div>
+              <ul class="mt-2 list-disc list-inside dark:text-cream space-y-1">
+                <li>Helped organize Unite 4 Ukraine, a charity Pokémon Unite tournament that raised over $18,000 in humanitarian donations for Ukraine</li>
+                <li>Handled brackets, player registration, outreach, and event logistics for a multi-day competitive broadcast</li>
+                <li>Ensured cybersecurity and fairness by integrating custom moderation tools into the tournament infrastructure</li>
+                <li>Supported coverage and community engagement throughout the event, working closely with streamers and commentators</li>
+              </ul>
+            </div>
+
+            <!-- Item -->
+            <div class="mb-12 md:mb-16 pl-8 relative before:absolute before:left-[-9px] before:top-1 before:w-4 before:h-4 before:bg-fog before:rounded-full before:border-4 before:border-cream dark:before:border-cream">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-xl font-semibold">Creative Designer</h3>
+                  <p class="dark:text-cream">IX Gaming</p>
+                </div>
+                <p class="text-sm text-fog text-right">Jan 2021 - Jul 2024</p>
+              </div>
+              <ul class="mt-2 list-disc list-inside dark:text-cream space-y-1">
+                <li>Designed 20+ custom digital assets, including thumbnails, banners, profile pictures, and promotional visuals for esports content creators and tournaments</li>
+                <li>Contributed to elevating the IX Gaming visual identity by aligning all media with a consistent and community-first brand aesthetic</li>
+              </ul>
+            </div>
+
+            <!-- Item -->
+            <div class="mb-12 md:mb-16 pl-8 relative before:absolute before:left-[-9px] before:top-1 before:w-4 before:h-4 before:bg-fog before:rounded-full before:border-4 before:border-cream dark:before:border-cream">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-xl font-semibold">Outreach Lead</h3>
+                  <p class="dark:text-cream">IX Gaming</p>
+                </div>
+                <p class="text-sm text-fog text-right">Sep 2020 - Aug 2023</p>
+              </div>
+              <ul class="mt-2 list-disc list-inside dark:text-cream space-y-1">
+                <li>Designed and implemented a DM-based outreach program, growing a community of 150 to over 700 members</li>
+                <li>Managed and mentored a team of outreach staff</li>
+                <li>Oversaw community expansion strategy and tracked outreach effectiveness using Google Analytics</li>
+                <li>Personally engaged with thousands of potential members using a warm and inclusive approach</li>
+              </ul>
+            </div>
+
+            <!-- Item -->
+            <div class="pl-8 relative before:absolute before:left-[-9px] before:top-1 before:w-4 before:h-4 before:bg-fog before:rounded-full before:border-4 before:border-cream dark:before:border-cream">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-xl font-semibold">Co-Founder & CEO</h3>
+                  <p class="dark:text-cream">iLive! Mental Health Initiative</p>
+                </div>
+                <p class="text-sm text-fog text-right">Jul 2021 - Apr 2025</p>
+              </div>
+              <ul class="mt-2 list-disc list-inside dark:text-cream space-y-1">
+                <li>Founded and grew a Discord-based mental health-focused esports community to over 500 members</li>
+                <li>Recruited, managed, and mentored a team of 20+ staff members across multiple departments</li>
+                <li>Raised and donated over $20,000 for mental health organizations such as NAMI, Active Minds, and The Trevor Project</li>
+                <li>Led creative, community, and technical teams and streamlined community operations</li>
+              </ul>
+            </div>
+
+            <!-- Item -->
+            <div class="mb-12 md:mb-16 pl-8 relative before:absolute before:left-[-9px] before:top-1 before:w-4 before:h-4 before:bg-fog before:rounded-full before:border-4 before:border-cream dark:before:border-cream">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-xl font-semibold">Undergraduate Research Mentee (Stanford SSG)</h3>
+                  <p class="dark:text-cream">Stanford University</p>
+                </div>
+                <p class="text-sm text-fog text-right">Feb 2025 - May 2025</p>
+              </div>
+              <ul class="mt-2 list-disc list-inside dark:text-cream space-y-1">
+                <li>Participated in a faculty-mentored research program focused on experimental neuroscience and biomedical innovation</li>
+                <li>Designed a virtual experiment testing the impact of tongue-based electric stimulation on taste receptor pathways and food allergy suppression</li>
+                <li>Researched parallels between spinal cord stimulation and gustatory system modulation for potential clinical applications</li>
+                <li>Collaborated remotely with mentors and peers to refine research methodologies</li>
+              </ul>
+            </div>
+
+            <!-- Item -->
+            <div class="mb-12 md:mb-16 pl-8 relative before:absolute before:left-[-9px] before:top-1 before:w-4 before:h-4 before:bg-fog before:rounded-full before:border-4 before:border-cream dark:before:border-cream">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-xl font-semibold">Tennis Coach</h3>
+                  <p class="dark:text-cream">Mouratoglou Tennis Center</p>
+                </div>
+                <p class="text-sm text-fog text-right">Nov 2022 - Aug 2024</p>
+              </div>
+              <ul class="mt-2 list-disc list-inside dark:text-cream space-y-1">
+                <li>Coached and developed elite tennis athletes with a focus on technical refinement and tactical adaptability</li>
+                <li>Encouraged mental resilience and a competitive growth mindset</li>
+                <li>Cultivated a positive and disciplined training culture where new talent is supported and empowered</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="py-16 md:py-24">
+        <h2 class="text-3xl font-bold text-center mb-12">Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          <a href="#" target="_blank" class="block bg-fog dark:bg-cream rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 text-cream dark:text-fog">BobaBlitz</h3>
+              <p class="text-cream dark:text-fog mb-4">
+                I'm building a cozy FPS game that will be available on Steam for PC and console upon release.<br /><br />
+                Two clashing personalities.<br />
+                Cozy meets FPS. What could go wrong? A lot actually.<br /><br />
+                Choose a character. Build. Blitz.<br /><br />
+                In BobaBlitz, strategy is king. BobaBlitz is a seven on seven FPS with a cozy vibe.
+                Each character has unique abilities and unique weapons to help them win. First to 3 rounds. No overtime.
+              </p>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="bg-cream text-fog text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-cream dark:text-fog">Experimental Design</span>
+                <span class="bg-cream text-fog text-xs font-medium px-5 py-0.5 rounded-full dark:bg-cream dark:text-fog">Hypothesis Testing</span>
+                <span class="bg-cream text-fog text-xs font-medium px-6 py-0.5 rounded-full dark:bg-cream dark:text-fog">Scientific Writing</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" target="_blank" class="block bg-fog dark:bg-cream rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 text-cream dark:text-fog">Matcha Cafe Tycoon</h3>
+              <p class="text-cream dark:text-fog mb-4">
+                Four Roblox friends in the tech industry making a game together. What could go wrong?<br />
+                A lot actually.
+              </p>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="bg-cream text-fog text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-cream dark:text-fog">Experimental Design</span>
+                <span class="bg-cream text-fog text-xs font-medium px-5 py-0.5 rounded-full dark:bg-cream dark:text-fog">Hypothesis Testing</span>
+                <span class="bg-cream text-fog text-xs font-medium px-6 py-0.5 rounded-full dark:bg-cream dark:text-fog">Scientific Writing</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" target="_blank" class="block bg-fog dark:bg-cream rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 text-cream dark:text-fog">MakerCAD</h3>
+              <p class="text-cream dark:text-fog mb-4">
+                Founded MakerCAD, a recurring, community-led CAD competition focused on creative, beginner-friendly design challenges across engineering, architecture, and product design...
+              </p>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="bg-cream text-fog text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-cream dark:text-fog">Experimental Design</span>
+                <span class="bg-cream text-fog text-xs font-medium px-5 py-0.5 rounded-full dark:bg-cream dark:text-fog">Hypothesis Testing</span>
+                <span class="bg-cream text-fog text-xs font-medium px-6 py-0.5 rounded-full dark:bg-cream dark:text-fog">Scientific Writing</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" target="_blank" class="block bg-fog dark:bg-cream rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 text-cream dark:text-fog">iSight Mobile</h3>
+              <p class="text-cream dark:text-fog mb-4">
+                I'm developing an AI and LLM-focused mobile app using React Native and Expo CLI to aid those diagnosed with Retinitis Pigmentosa with everyday life...
+              </p>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="bg-cream text-fog text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-cream dark:text-fog">Experimental Design</span>
+                <span class="bg-cream text-fog text-xs font-medium px-5 py-0.5 rounded-full dark:bg-cream dark:text-fog">Hypothesis Testing</span>
+                <span class="bg-cream text-fog text-xs font-medium px-6 py-0.5 rounded-full dark:bg-cream dark:text-fog">Scientific Writing</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" target="_blank" class="block bg-fog dark:bg-cream rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 text-cream dark:text-fog">Stanford Science Small Groups (SSG) - Electric Stimulation & Food Allergies</h3>
+              <p class="text-cream dark:text-fog mb-4">A research project focused on drawing parallels between spinal cord neuromodulation, taste receptors, and allergenic compounds.</p>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="bg-cream text-fog text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-cream dark:text-fog">Experimental Design</span>
+                <span class="bg-cream text-fog text-xs font-medium px-5 py-0.5 rounded-full dark:bg-cream dark:text-fog">Hypothesis Testing</span>
+                <span class="bg-cream text-fog text-xs font-medium px-6 py-0.5 rounded-full dark:bg-cream dark:text-fog">Scientific Writing</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" target="_blank" class="block bg-fog dark:bg-cream rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 text-cream dark:text-fog">Unite for Ukraine</h3>
+              <p class="text-cream dark:text-fog mb-4">A charity event hosted by IX Gaming that raised over $18,000 to support humanitarian efforts in Ukraine.</p>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="bg-cream text-fog text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-cream dark:text-fog">Discord API</span>
+                <span class="bg-cream text-fog text-xs font-medium px-5 py-0.5 rounded-full dark:bg-cream dark:text-fog">Community Operations</span>
+                <span class="bg-cream text-fog text-xs font-medium px-6 py-0.5 rounded-full dark:bg-cream dark:text-fog">Event Planning</span>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <section id="skills" class="py-16 md:py-24">
+        <h2 class="text-3xl font-bold text-center mb-12">Technical Skills</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">Java</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">Python</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">JavaScript</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">Typescript</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">React</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">React Native</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">C++</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">Unreal Engine</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">HTML</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">CSS</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">Tailwind CSS</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">React.js</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">Express</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">PostgreSQL</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">MongoDB</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">Hugging Face Transformers</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">Firebase</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">Discord API</span></div>
+          <div class="bg-fog dark:bg-cream p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span class="text-cream dark:text-fog">sanity.io</span></div>
+        </div>
+      </section>
+
+      <section id="contact" class="text-center py-16 md:py-24">
+        <h2 class="text-3xl font-bold mb-4 text-fog">Contact Me!</h2>
+        <p class="max-w-xl mx-auto dark:text-cream mb-8 text-fog">
+          I'm currently looking for SWE internships. If you've got an idea, let's chat on LinkedIn and build the future.
         </p>
-        <h2 class="text-3xl md:text-5xl font-semibold text-periwinkle dark:text-periwinkle text-center p-4 animate-fade-in-up" style="animation-delay: 1.5s;">
-            Welcome to my world. Michael's that is.
-        </h2>
-    </div>
+      </section>
+    </main>
 
-    <div id="main-content" class="opacity-0">
-        <header class="bg-light-cream/70 dark:bg-light-cream/70 backdrop-blur-lg sticky top-0 z-50 border-b text-jet-black dark:text-jet-black">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-16">
-                    <div class="flex items-center">
-                        <a href="#" class="#">Michael Poniente</a>
-                    </div>
-                    <div class="hidden md:flex items-center space-x-8">
-                        <a href="#about" class="text-slate-600 dark:text-ecru-gold hover:text-periwinkle dark:hover:text-teddu-brown transition">About</a>
-                        <a href="#experience" class="text-slate-600 dark:text-ecru-gold hover:text-periwinkle dark:hover:text-teddu-brown transition">Experience</a>
-                        <a href="#projects" class="text-slate-600 dark:text-ecru-gold hover:text-periwinkle dark:hover:text-teddu-brown transition">Projects</a>
-                        <a href="#skills" class="text-slate-600 dark:text-ecru-gold hover:text-periwinkle dark:hover:text-teddu-brown transition">Skills</a>
-                        <a href="#contact" class="text-slate-600 dark:text-ecru-gold hover:text-periwinkle dark:hover:text-teddu-brown transition">Contact</a>
-                    </div>
-                    <div class="flex items-center">
-                        <button id="theme-toggle" class="p-2 rounded-md text-jet-black dark:text-jet-black hover:text-jet-black dark:hover:text-jet-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-periwinkle">
-                            <svg id="theme-toggle-dark-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                            <svg id="theme-toggle-light-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </header>
+    <footer class="border-t border-fog dark:border-fog">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-fog dark:text-cream">
+        <p>Keep being awesome. You've got this! 😊</p>
+      </div>
+    </footer>
+  </div>
 
-        <main>
-            <section id="about" class="py-16 md:py-20 text-center">
-                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h1 class="text-4xl md:text-6xl font-bold text-jet-black dark:text-teddy-brown">Michael Poniente</h1>
-                    <p class="mt-4 text-xl md:text-2xl text-jet-black dark:text-ecru-gold">Computer Engineering Student • Aspiring Software Engineer</p>
-                    <p class="mt-6 max-w-3xl mx-auto text-jet-black dark:text-ecru-gold">
-                        I'm a second-year Computer Engineering major with a focus on software development and UX engineering. My goal is to build applications that enhance accessibility and make user experiences more inclusive. 
-                    </p>
-                    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-                        <a href="https://linkedin.com/in/michael-poniente/" target="_blank" class="text-jet-black dark:text-ecru-gold hover:text-periwinkle dark:hover:text-teddy-brown transition duration-300">
-                            <i data-lucide="linkedin" class="w-6 h-6"></i>
-                            <span class="sr-only">LinkedIn</span>
-                        </a>
-                        <a href="https://github.com/MotivatedPooh" target="_blank" class="text-jet-black dark:text-ecru-gold hover:text-periwinkle dark:hover:text-teddy-brown transition duration-300">
-                            <i data-lucide="github" class="w-6 h-6"></i>
-                            <span class="sr-only">GitHub</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="mt-16 text-center">
+  <script>
+    lucide.createIcons();
 
-                    <div class="mt-6 max-w-lg mx-auto rounded-xl shadow-lg overflow-hidden border border-slate-200 dark:border-slate-800">
-                        <iframe style="border-radius:12px; display: block;" 
-                                src="https://open.spotify.com/embed/playlist/1pMnRrkbEocfaaL15aoW93?utm_source=generator" 
-                                width="100%" 
-                                height="152" 
-                                frameBorder="0" 
-                                allowfullscreen="" 
-                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                                loading="lazy">
-                        </iframe>
-                    </div>
-                </div>
-            </section>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-            <section id="experience" class="py-16 md:py-24">
-                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 class="text-3xl font-bold text-center mb-12">Work Experience</h2>
-                    <div class="relative border-l-2 border-jet-black dark:border-jet-black">
-                        
-                        <div class="mb-12 md:mb-16 pl-8 relative before:absolute before:left-[-9px] before:top-1 before:w-4 before:h-4 before:bg-periwinkle before:rounded-full before:border-4 before:border-teddy-brown dark:before:border-light-cream">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="text-xl font-semibold">Center Assistant, Math & Reading Tutor</h3>
-                                    <p class="dark:text-ecru-gold">Kumon North America, Inc.</p>
-                                </div>
-                                <p class="text-sm text-jet-black text-right">May 2023 - Present</p>
-                            </div>
-                            <ul class="mt-2 list-disc list-inside dark:text-ecru-gold space-y-1">
-                                <li>Tutored K-12 students emphasizing concept mastery in applied mathematics and reading comprehension</li>
-                                <li>Provided academic guidance and fostered an environment to allow students to challenge their comfort level and exceed grade-level expectations</li>
-                                <li>Supported center operations by managing student flow, grading, and personalized instruction</li>
-                            </ul>
-                        </div>
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
+    } else {
+      document.documentElement.classList.remove('dark');
+      themeToggleDarkIcon.classList.remove('hidden');
+    }
 
-                        <div class="mb-12 md:mb-16 pl-8 relative before:absolute before:left-[-9px] before:top-1 before:w-4 before:h-4 before:bg-periwinkle before:rounded-full before:border-4 before:border-teddy-brown dark:before:border-light-cream">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="text-xl font-semibold">Sr. Technical & Community Operations Staff</h3>
-                                    <p class="dark:text-ecru-gold">IX Gaming</p>
-                                </div>
-                                <p class="text-sm text-jet-black text-right">Sep 2020 - Present</p>
-                            </div>
-                            <ul class="mt-2 list-disc list-inside dark:text-ecru-gold space-y-1">
-                                <li>Built a prescription transfer tracking system using ASP.NET Core and ReactJS.</li>
-                                <li>Developed an automated insurance claims system in C# to improve HIPAA compliance.</li>
-                            </ul>
-                        </div>
-                      
-                        <div class="mb-12 md:mb-16 pl-8 relative before:absolute before:left-[-9px] before:top-1 before:w-4 before:h-4 before:bg-periwinkle before:rounded-full before:border-4 before:border-teddy-brown dark:before:border-light-cream">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="text-xl font-semibold">Stanford SSG Reserach Mentee</h3>
-                                    <p class="dark:text-notion-dark-subtle">Stanford University</p>
-                                </div>
-                                <p class="text-sm text-slate-500 text-right">Feb 2025 - May 2025</p>
-                            </div>
-                            <ul class="mt-2 list-disc list-inside dark:ecru-gold space-y-1">
-                                <li>Participated in a faculty-mentored research program focused on experimental neuroscience and biomedical innovation</li>
-                                <li>Designed a virtual experiment testing the impact of tongue-based electric stimulation on taste receptor pathways and food allergy suppression</li>
-                                <li>Researched parallels between spinal cord stimulation and gustatory system modulation for potential clinical applications</li>
-                                <li>Collaborated remotely with mentors and peers to refine research methodologies</li>
-                            </ul>
-                        </div>
-
-                        <div class="pl-8 relative before:absolute before:left-[-9px] before:top-1 before:w-4 before:h-4 before:bg-periwinkle before:rounded-full before:border-4 before:border-teddy-brown dark:before:border-light-cream">
-                              <div class="flex justify-between items-start">
-                                  <div>
-                                      <h3 class="text-xl font-semibold">Founder & CEO</h3>
-                                      <p class="dark:text-notion-dark-subtle">iLive! Mental Health Initiative</p>
-                                  </div>
-                                  <p class="text-sm text-slate-500 text-right">Jul 2021 - Apr 2025</p>
-                              </div>
-                              <ul class="mt-2 list-disc list-inside dark:ecru-gold space-y-1">
-                                  <li>Founded and grew a Discord-based mental health-focused esports community to over 500 members</li>
-                                  <li>Recruited, managed, and mentored a team of over 20 staff members across multiple departments, trained volunteer peer support consultants</li>
-                                  <li>Led the creative, community, and technical teams, reinforcing our vision and cross-functional collaborating, and streamlined community operations to increase engagement between members</li>
-                              </ul>
-                          </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="projects" class="py-16 md:py-24">
-                <h2 class="text-3xl font-bold text-center mb-12">Projects</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-                    <a href="#" target="_blank" class="block bg-teddy-brown dark:bg-light-cream rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2">Stanford Science Small Groups (SSG) - Electric Stimulation & Food Allergies</h3>
-                            <p class="text-jet-black dark:ecru-gold mb-4">A research project focused on drawing parallels between spinal cord neuromodulation, taste receptors, and allergenic compounds.</p>
-                            <div class="flex flex-wrap gap-2 mt-4">
-                                <span class="bg-ecru-gold text-tea-green text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-ecru-gold dark:text-tea-green">Experimental Design</span>
-                              <span class="bg-ecru-gold text-tea-green text-xs font-medium px-5.0 py-0.5 rounded-full dark:bg-ecru-gold dark:text-tea-green">Hypothesis Testingn</span>
-                              <span class="bg-ecru-gold text-tea-green text-xs font-medium px-7.5 py-0.5 rounded-full dark:bg-ecru-gold dark:text-tea-green">Scientific Writing</span>
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <a href="#" target="_blank" class="block bg-teddy-brown dark:bg-notion-dark-card rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2">Unite for Ukraine</h3>
-                            <p class="text-jet-black dark:ecru-gold mb-4">A charity event hosted by IX Gaming focused on bringing together mobile gamers of popular MOBA, Pokémon Unite, that raised over $18,000 in efforts to support humanitarian efforts in the 2022 Ukrainian crisis.</p>
-                            <div class="flex flex-wrap gap-2 mt-4">
-                                <span class="bg-periwinkle text-indigo-100 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-indigo-900 dark:text-indigo-300">Discord API</span>
-                                <span class="bg-periwinkle text-indigo-100 text-xs font-medium px-5.0 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">Community Operations</span>
-                                <span class="bg-periwinkle text-indigo-100 text-xs font-medium px-7.5 py-0.5 rounded-full dark:bg-orange-900 dark:text-orange-300">Event Planning</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </section>
-
-            <section id="skills" class="py-16 md:py-24">
-                <h2 class="text-3xl font-bold text-center mb-12">Technical Skills</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <div class="bg-olivine-green dark:bg-tea-green p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span>Java</span></div>
-                    <div class="bg-olivine-green dark:bg-tea-green p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span>Python</span></div>
-                    <div class="bg-olivine-green dark:bg-tea-green p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span>JavaScript</span></div>
-                    <div class="bg-olivine-green dark:bg-tea-green p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span>React Native</span></div>
-                    <div class="bg-olivine-green dark:bg-tea-green p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span>C++</span></div>
-                    <div class="bg-olivine-green dark:bg-tea-green p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span>HTML</span></div>
-                    <div class="bg-olivine-green dark:bg-tea-green p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span>CSS</span></div>
-                    <div class="bg-olivine-green dark:bg-tea-green p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span>React.js</span></div>
-                    <div class="bg-olivine-green dark:bg-tea-green p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span>Graphic Design (Photopea)</span></div>
-                    <div class="bg-olivine-green dark:bg-tea-green p-4 rounded-lg shadow-md flex items-center justify-center text-center"><span>Discord API</span></div>
-                </div>
-            </section>
-
-            <section id="contact" class="text-center py-16 md:py-24">
-                <h2 class="text-3xl font-bold mb-4">Contact Me!</h2>
-                <p class="max-w-xl mx-auto dark:text-ecru-gold mb-8">
-                    I'm currently looking for internships to kickstart my career in software developing.
-                </p>
-                <a href="mailto:michaelwrites.biz@gmail.com" class="inline-block bg-periwinkle text-white font-medium py-3 px-8 rounded-lg hover:bg-periwinkle transition-colors">
-                    Email Me!
-                </a>
-            </section>
-        </main>
-
-        <footer class="border-t border-jet-black dark:border-jet-black">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-jet-black dark:text-ecru-gold">
-                <p>Keep being awesome. You've got this! 😊</p>
-            </div>
-        </footer>
-    </div>
-
-    <script>
-        lucide.createIcons();
-
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            themeToggleLightIcon.classList.remove('hidden');
+    themeToggleBtn.addEventListener('click', function() {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      if (localStorage.getItem('color-theme')) {
+        if (localStorage.getItem('color-theme') === 'light') {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('color-theme', 'dark');
         } else {
-            document.documentElement.classList.remove('dark');
-            themeToggleDarkIcon.classList.remove('hidden');
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('color-theme', 'light');
         }
-        themeToggleBtn.addEventListener('click', function() {
-            themeToggleDarkIcon.classList.toggle('hidden');
-            themeToggleLightIcon.classList.toggle('hidden');
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
-            } else {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                }
-            }
-        });
+      } else {
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('color-theme', 'light');
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('color-theme', 'dark');
+        }
+      }
+    });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const splashScreen = document.getElementById('splash-screen');
-            const mainContent = document.getElementById('main-content');
-            const geolocationSpan = document.getElementById('geolocation');
-            const geolocationLine = document.getElementById('geolocation-line');
+    document.addEventListener('DOMContentLoaded', () => {
+      const splashScreen = document.getElementById('splash-screen');
+      const mainContent = document.getElementById('main-content');
+      const geolocationSpan = document.getElementById('geolocation');
+      const geolocationLine = document.getElementById('geolocation-line');
 
-            async function showSplashAndLoadContent() {
-                try {
-                    const response = await fetch('https://ip-api.com/json/?fields=status,message,country,regionName');
-                    const data = await response.json();
-                    
-                    if (data.status === 'success' && data.regionName && data.country) {
-                        const locationString = `${data.regionName}, ${data.country}`;
-                        geolocationSpan.textContent = locationString;
-                        geolocationLine.style.visibility = 'visible';
-                    }
+      async function showSplashAndLoadContent() {
+        try {
+          const response = await fetch('https://ip-api.com/json/?fields=status,message,country,regionName');
+          const data = await response.json();
 
-                } catch (error) {
-                    console.error("Could not fetch geolocation:", error);
-                }
+          if (data.status === 'success' && data.regionName && data.country) {
+            const locationString = `${data.regionName}, ${data.country}`;
+            geolocationSpan.textContent = locationString;
+            geolocationLine.style.visibility = 'visible';
+          }
 
-                setTimeout(() => {
-                    splashScreen.style.opacity = '0';
-                    splashScreen.addEventListener('transitionend', () => {
-                        splashScreen.style.display = 'none';
-                        mainContent.style.opacity = '1';
-                    }, { once: true });
+        } catch (error) {
+          console.error("Could not fetch geolocation:", error);
+        }
 
-                }, 4000);
-            }
+        setTimeout(() => {
+          splashScreen.style.opacity = '0';
+          splashScreen.addEventListener('transitionend', () => {
+            splashScreen.style.display = 'none';
+            mainContent.style.opacity = '1';
+          }, { once: true });
 
-            showSplashAndLoadContent();
-        });
-    </script>
+        }, 4000);
+      }
+
+      showSplashAndLoadContent();
+    });
+  </script>
 </body>
+</html>
