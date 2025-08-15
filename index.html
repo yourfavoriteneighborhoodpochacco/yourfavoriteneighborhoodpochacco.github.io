@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-    Michael Poniente • Lead Full-Stack Developer @ GenTalks • Game Developer of BobaBlitz
+    Michael Poniente • Website Portfolio
   </title>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -94,14 +94,14 @@
 <body class="bg-cream text-fog transition-colors duration-300">
 
   <div id="splash-screen" class="fixed inset-0 flex flex-col items-center justify-center z-[100] transition-opacity duration-1000 ease-in-out overflow-hidden">
-    <h1 class="text-4xl md:text-6xl font-bold text-fog text-center p-8 animate-fade-in-up" style="animation-delay: 0.5s;">
-      Hi chat!
+    <h1 class="text-4xl md:text-6xl text-fog text-center p-8 animate-fade-in-up" style="animation-delay: 0.5s;">
+      hi chat!
     </h1>
     <p id="geolocation-line" class="text-2xl md:text-4xl text-fog text-center mb-4 animate-fade-in-up" style="animation-delay: 1s; visibility: hidden;">
-      Looks like you are from <span id="geolocation"></span>
+      looks like you're from <span id="geolocation"></span>
     </p>
     <h2 class="text-3xl md:text-5xl font-semibold text-fog text-center p-4 animate-fade-in-up" style="animation-delay: 1.5s;">
-      Welcome to my portfolio.
+      welcome to my world.
     </h2>
   </div>
 
@@ -110,14 +110,14 @@
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center">
-            <a href="#" class="text-fog font-semibold">Michael Poniente</a>
+            <a href="#" class="text-fog">michael poniente</a>
           </div>
           <div class="hidden md:flex items-center space-x-8">
-            <a href="#about" class="text-fog hover:text-fog transition">About</a>
-            <a href="#experience" class="text-fog hover:text-fog transition">Experience</a>
-            <a href="#projects" class="text-fog hover:text-fog transition">Projects</a>
-            <a href="#skills" class="text-fog hover:text-fog transition">Skills</a>
-            <a href="#contact" class="text-fog hover:text-fog transition">Contact</a>
+            <a href="#about" class="text-fog hover:text-fog transition">about</a>
+            <a href="#experience" class="text-fog hover:text-fog transition">experience</a>
+            <a href="#projects" class="text-fog hover:text-fog transition">projects</a>
+            <a href="#skills" class="text-fog hover:text-fog transition">skills</a>
+            <a href="#contact" class="text-fog hover:text-fog transition">contact</a>
           </div>
           <div class="flex items-center">
             <button id="theme-toggle" class="p-2 rounded-md text-fog hover:text-fog focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fog">
@@ -132,7 +132,7 @@
     <main>
       <section id="about" class="py-16 md:py-20 text-center">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 class="text-4xl md:text-6xl font-bold text-fog">Michael Poniente</h1>
+          <h1 class="text-4xl md:text-6xl font-bold text-fog">michael poniente</h1>
           <p class="mt-4 text-xl md:text-2xl text-fog">Lead Full-Stack Developer @ GenTalks • Game Developer of BobaBlitz</p>
           <p class="mt-6 max-w-3xl mx-auto text-fog">
             I'm a second-year Computer Engineering student with a focus on software development and UX engineering.
@@ -166,7 +166,7 @@
 
       <section id="experience" class="py-16 md:py-24">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 class="text-3xl font-bold text-center mb-12">Experience</h2>
+          <h2 class="text-3xl text-center mb-12">experience</h2>
 
           <div class="relative border-l-2 border-fog">
             <!-- Item -->
@@ -178,7 +178,7 @@
                 </div>
                 <p class="text-sm text-fog text-right">Jul 2025 - Present</p>
               </div>
-              <ul class="mt-2 list-disc list-inside text-fog space-y-1">
+              <ul class="mt-2 list-disc list-inside text-fog space-y-1 pr-8">
                 <li>Led the architecture and development of GenTalks' website and designed UI/UX layouts that align with the organization's mission, target audience, and branding</li>
                 <li>Self-taught and implemented Node.js, Express, and PostgreSQL in order to build backend functionality and manage data</li>
                 <li>Integrated Sanity CMS as a strategic product decision to enable non-developers to dynamically manage content</li>
@@ -540,5 +540,32 @@
       showSplashAndLoadContent();
     });
   </script>
+
+  <script>
+    function typeWriterEffect(element, speed = 50, delay = 0) {
+      const text = element.textContent;
+      element.textContent = "";
+      let i = 0;
+    
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+    
+      setTimeout(type, delay);
+    }
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      let delay = 0; // controls staggered typing
+      document.querySelectorAll("h1, h2, h3, p").forEach(el => {
+        typeWriterEffect(el, 40, delay);
+        delay += el.textContent.length * 40 + 200; // space out animations
+      });
+    });
+  </script>
+
 </body>
 </html>
